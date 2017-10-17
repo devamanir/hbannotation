@@ -34,9 +34,10 @@ public class ExportReport {
 	public void exportDatabasesReport(List<Employee> emp) {
 		try {
 			XSSFSheet reportSheet = workbook.createSheet("Report");
-		
+
 			XSSFRow row = reportSheet.createRow(0);
 			XSSFCell cell;
+			
 			cell = row.createCell(1);
 			cell.setCellValue("EMP ID");
 			cell = row.createCell(2);
@@ -44,13 +45,24 @@ public class ExportReport {
 			cell = row.createCell(3);
 			cell.setCellValue("FirstName");
 			cell = row.createCell(4);
-			//cell.getCellStyle().setFillBackgroundColor(new XSSFColor(java.awt.Color.GREEN));
+			cell.setCellValue("LastName");
+			
+			row = reportSheet.createRow(4);
+			cell = row.createCell(1);
+			cell.setCellValue("EMP ID");
+			cell = row.createCell(2);
+			cell.setCellValue("Designation");
+			cell = row.createCell(3);
+			cell.setCellValue("FirstName");
+			cell = row.createCell(4);
+			cell.getCellStyle().setFillBackgroundColor(new
+			XSSFColor(java.awt.Color.GREEN));
 			cell.setCellValue("LastName");
 			XSSFCellStyle createCellStyle = workbook.createCellStyle();
-			
-            XSSFFont createFont = workbook.createFont();
-        
-			int i = 1;
+
+			XSSFFont createFont = workbook.createFont();
+
+			int i = 5;
 			for (Employee st : emp) {
 				row = reportSheet.createRow(i);
 				cell = row.createCell(1);
@@ -59,13 +71,13 @@ public class ExportReport {
 				cell.setCellValue(st.getDesignation());
 				cell = row.createCell(3);
 				workbook.createFont().setColor(HSSFColor.BLUE.index);
-	            createCellStyle.setFont(createFont);
-	            cell.setCellStyle(createCellStyle);
+				createCellStyle.setFont(createFont);
+				cell.setCellStyle(createCellStyle);
 				cell.setCellValue(st.getFirstName());
 				cell = row.createCell(4);
 				cell.setCellValue(st.getLastName());
 				createFont.setColor(HSSFColor.BRIGHT_GREEN.index);
-	            createCellStyle.setFont(createFont);
+				createCellStyle.setFont(createFont);
 				cell.setCellStyle(createCellStyle);
 				i++;
 			}
